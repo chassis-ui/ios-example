@@ -127,7 +127,7 @@ enum ChassisMotion {
 }
 
 /// The native bars, styled by the tokens. They are the mobile bars of the Figma library:
-/// `Mobile Bottom Navigation` and `Mobile Nav Control Bar`, type center.
+/// `Mobile Bottom Navigation` and `Mobile Nav Control Bar`.
 enum ChassisAppearance {
     @MainActor
     static func configure() {
@@ -161,10 +161,15 @@ enum ChassisAppearance {
             .font: ChassisType.navTitle.uiFont,
             .foregroundColor: ChassisTokensColor.ColorContextDefaultFgMain
         ]
+        navBar.largeTitleTextAttributes = [
+            .font: ChassisType.h2.uiFont,
+            .foregroundColor: ChassisTokensColor.ColorContextDefaultFgMain
+        ]
         // Clear at the top of the content, where the screen shows through
         let navBarAtEdge = navBar.copy()
         navBarAtEdge.configureWithTransparentBackground()
         navBarAtEdge.titleTextAttributes = navBar.titleTextAttributes
+        navBarAtEdge.largeTitleTextAttributes = navBar.largeTitleTextAttributes
         UINavigationBar.appearance().standardAppearance = navBar
         UINavigationBar.appearance().compactAppearance = navBar
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAtEdge

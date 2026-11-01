@@ -136,10 +136,13 @@ tokens in `ChassisAppearance`. The segment bar, the search field, buttons and te
 custom, because iOS gives its own no way to take these tokens. They follow the mobile components
 of the `cx.components.UI` Figma library.
 
-The titles are inline, as `Mobile Nav Control Bar` of type `center`. A large title did not render
-on the iOS 27 simulator, with or without these appearances, while it did on iOS 18.4. On iOS 27
-the system draws the tab bar as floating glass, and keeps its own color for the icons
-that are not selected.
+The tab screens but Search have large titles, and a pushed screen or a sheet an inline one. A background on a
+top `safeAreaInset`, such as that of the segment bar, takes `ignoresSafeAreaEdges: []`: by default it
+reaches under the bar, where it covers a large title on iOS 27.
+
+On iOS 27 the system draws the tab bar as floating glass. The selected tab takes its token, and the
+tabs that are not selected keep the color of the system, whatever the appearance says. On iOS 18 they
+take `fg-subtle`, as `_ Tabs - Glass` of the Figma library asks for both.
 
 ### Where the tokens have no group
 

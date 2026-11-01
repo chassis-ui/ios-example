@@ -43,7 +43,6 @@ struct FoundationsView: View {
             .listStyle(.plain)
             .chassisScreen()
             .navigationTitle("Foundations")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Topic.self) { topic in
                 detail(of: topic)
                     .navigationTitle(topic.rawValue)

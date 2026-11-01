@@ -41,7 +41,8 @@ struct HomeView: View {
                 )
                 .padding(.horizontal, ChassisTokens.SpaceContextMedium)
                 .padding(.bottom, ChassisTokens.SpaceUnit10)
-                .background(.token(ChassisTokensColor.ColorContextDefaultBgEven))
+                // Not under the bar: on iOS 27 a background there covers a large title
+                .background(.token(ChassisTokensColor.ColorContextDefaultBgEven), ignoresSafeAreaEdges: [])
             }
             .refreshable {
                 await load()
@@ -53,7 +54,6 @@ struct HomeView: View {
             }
             .chassisScreen()
             .navigationTitle("Discover")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Guide.self) { guide in
                 GuideDetailView(guide: guide)
             }

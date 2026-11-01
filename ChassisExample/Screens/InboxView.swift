@@ -58,7 +58,6 @@ struct InboxView: View {
             }
             .chassisScreen()
             .navigationTitle("Inbox")
-            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Thread.ID.self) { id in
                 ChatView(threadID: id)
             }

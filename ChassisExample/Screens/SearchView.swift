@@ -53,7 +53,8 @@ struct SearchView: View {
                     }
                 }
                 .padding(.bottom, ChassisTokens.SpaceUnit10)
-                .background(.token(ChassisTokensColor.ColorContextDefaultBgEven))
+                // Not under the bar: on iOS 27 a background there covers a large title
+                .background(.token(ChassisTokensColor.ColorContextDefaultBgEven), ignoresSafeAreaEdges: [])
             }
             .chassisScreen()
             .navigationTitle("Search")

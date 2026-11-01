@@ -79,7 +79,6 @@ struct AccountView: View {
             .listStyle(.insetGrouped)
             .chassisScreen()
             .navigationTitle("Account")
-            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $isPricingShown) {
                 PricingSheet()
             }
