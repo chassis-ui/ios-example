@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-26
+    strategy:
+      fail-fast: false
+      matrix:
+        brand: [chassis, sinefil]
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Cache the downloads
+        uses: actions/cache@v5
+        with:
+          path: .cache
+          key: downloads-${{ matrix.brand }}-${{ hashFiles('Chassis.xcconfig') }}
+
+      - name: Sync the brand
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/sync-brand.sh "${{ matrix.brand }}"
+
+      - name: Lint
+        run: scripts/lint-tokens.sh
+
+      - name: Build
+        run: >
+          xcodebuild
+          -project ChassisExample.xcodeproj
+          -scheme ChassisExample
+          -destination 'generic/platform=iOS Simulator'
+          CHASSIS_BRAND=${{ matrix.brand }}
+          CODE_SIGNING_ALLOWED=NO
+          build

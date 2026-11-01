@@ -1,0 +1,24 @@
+// The one place that says which brand this app is, and where it is built from.
+//
+// Change CHASSIS_BRAND here, or override it for one build:
+//   xcodebuild -scheme ChassisExample CHASSIS_BRAND=sinefil
+//
+// To adopt a new release, change its version here and build. scripts/sync-brand.sh downloads it,
+// checks it and replaces Generated/. The same goes for any other setting of this file, so a team
+// can point this app at its own tokens and assets.
+
+CHASSIS_BRAND = chassis
+CHASSIS_APP = demo
+
+// The tokens and the assets: an archive per brand, on a release v<version> of a GitHub repository
+CHASSIS_TOKENS_REPOSITORY = chassis-ui/website-tokens
+CHASSIS_TOKENS_VERSION = 0.2.0
+CHASSIS_TOKENS_ARCHIVE = website-tokens-ios-$(CHASSIS_APP)-$(CHASSIS_BRAND)-$(CHASSIS_TOKENS_VERSION).zip
+
+CHASSIS_ASSETS_REPOSITORY = chassis-ui/website-assets
+CHASSIS_ASSETS_VERSION = 0.3.0
+CHASSIS_ASSETS_ARCHIVE = chassis-website-assets-ios-$(CHASSIS_APP)-$(CHASSIS_BRAND)-$(CHASSIS_ASSETS_VERSION).zip
+
+// One bundle identifier per brand, so that the brands install side by side
+PRODUCT_BUNDLE_IDENTIFIER = com.chassis-ui.example.$(CHASSIS_BRAND)
+INFOPLIST_KEY_CFBundleDisplayName = $(CHASSIS_BRAND)

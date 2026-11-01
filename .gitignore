@@ -60,3 +60,9 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+.DS_Store
+
+# Chassis: what scripts/sync-brand.sh downloads and unpacks
+Generated/
+.cache/
