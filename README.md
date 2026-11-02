@@ -44,8 +44,8 @@ the build, and the error lists the files of the release, which name the brands t
 Change the version in `Chassis.xcconfig` and build. That line is the whole change:
 
 ```
-CHASSIS_TOKENS_VERSION = 0.2.0
-CHASSIS_ASSETS_VERSION = 0.3.0
+CHASSIS_TOKENS_VERSION = 0.3.0
+CHASSIS_ASSETS_VERSION = 0.5.0
 ```
 
 A token that was renamed or removed then fails to compile, and shows you what to update. A font
