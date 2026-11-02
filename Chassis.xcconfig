@@ -16,7 +16,7 @@ CHASSIS_TOKENS_VERSION = 0.2.0
 CHASSIS_TOKENS_ARCHIVE = website-tokens-ios-$(CHASSIS_APP)-$(CHASSIS_BRAND)-$(CHASSIS_TOKENS_VERSION).zip
 
 CHASSIS_ASSETS_REPOSITORY = chassis-ui/website-assets
-CHASSIS_ASSETS_VERSION = 0.3.0
+CHASSIS_ASSETS_VERSION = 0.4.0
 CHASSIS_ASSETS_ARCHIVE = chassis-website-assets-ios-$(CHASSIS_APP)-$(CHASSIS_BRAND)-$(CHASSIS_ASSETS_VERSION).zip
 
 // One bundle identifier per brand, so that the brands install side by side
