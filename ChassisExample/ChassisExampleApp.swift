@@ -87,7 +87,7 @@ private struct TabLabel: View {
         Label {
             Text(title)
         } icon: {
-            Image(icon.rawValue)
+            icon.image
         }
     }
 }

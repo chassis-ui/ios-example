@@ -15,11 +15,12 @@
 		B1000000000000000000000F /* NumberMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000000000000000000000F /* NumberMedium.swift */; };
 		B10000000000000000000010 /* NumberSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000010 /* NumberSmall.swift */; };
 		B10000000000000000000011 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000011 /* String.swift */; };
+		B10000000000000000000012 /* ChassisIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000012 /* ChassisIcons.swift */; };
 		B10000000000000000000020 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000020 /* Icons.xcassets */; };
 		B10000000000000000000021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000021 /* Assets.xcassets */; };
-		B10000000000000000000022 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000022 /* Icons.xcassets */; };
 		B10000000000000000000023 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000023 /* fonts */; };
 		B10000000000000000000024 /* app_icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000024 /* app_icon.icon */; };
+		B10000000000000000000025 /* ChassisIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000025 /* ChassisIcons.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,11 +34,12 @@
 		F1000000000000000000000F /* NumberMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberMedium.swift; sourceTree = "<group>"; };
 		F10000000000000000000010 /* NumberSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSmall.swift; sourceTree = "<group>"; };
 		F10000000000000000000011 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		F10000000000000000000012 /* ChassisIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChassisIcons.swift; sourceTree = "<group>"; };
 		F10000000000000000000020 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		F10000000000000000000021 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F10000000000000000000022 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		F10000000000000000000023 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		F10000000000000000000024 /* app_icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "app-icon/app_icon.icon"; sourceTree = "<group>"; };
+		F10000000000000000000025 /* ChassisIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ChassisIcons.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -60,6 +62,7 @@
 			children = (
 				A10000000000000000000003 /* tokens */,
 				A10000000000000000000004 /* assets */,
+				A10000000000000000000006 /* icons */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -84,11 +87,19 @@
 			isa = PBXGroup;
 			children = (
 				F10000000000000000000021 /* Assets.xcassets */,
-				F10000000000000000000022 /* Icons.xcassets */,
 				F10000000000000000000023 /* fonts */,
 				F10000000000000000000024 /* app_icon.icon */,
 			);
 			path = assets;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000006 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				F10000000000000000000012 /* ChassisIcons.swift */,
+				F10000000000000000000025 /* ChassisIcons.xcassets */,
+			);
+			path = icons;
 			sourceTree = "<group>";
 		};
 		A10000000000000000000005 /* Products */ = {
@@ -157,9 +168,9 @@
 			files = (
 				B10000000000000000000020 /* Icons.xcassets in Resources */,
 				B10000000000000000000021 /* Assets.xcassets in Resources */,
-				B10000000000000000000022 /* Icons.xcassets in Resources */,
 				B10000000000000000000023 /* fonts in Resources */,
 				B10000000000000000000024 /* app_icon.icon in Resources */,
+				B10000000000000000000025 /* ChassisIcons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +199,7 @@
 				"$(SRCROOT)/Generated/tokens/NumberMedium.swift",
 				"$(SRCROOT)/Generated/tokens/NumberSmall.swift",
 				"$(SRCROOT)/Generated/tokens/String.swift",
+				"$(SRCROOT)/Generated/icons/ChassisIcons.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -208,6 +220,7 @@
 				B1000000000000000000000F /* NumberMedium.swift in Sources */,
 				B10000000000000000000010 /* NumberSmall.swift in Sources */,
 				B10000000000000000000011 /* String.swift in Sources */,
+				B10000000000000000000012 /* ChassisIcons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

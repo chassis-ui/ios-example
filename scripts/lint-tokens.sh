@@ -1,7 +1,8 @@
 #!/bin/sh
 #
 # Checks the rule of this example: every value comes from a token, and every asset from the
-# release. It reads ChassisExample/ and, for the names of the icons and images, Generated/.
+# release. It reads ChassisExample/ and, for the names of the images, Generated/. An icon is a case
+# of CxIcon, which the compiler checks.
 
 set -u
 
@@ -47,14 +48,14 @@ for word in chassis sinefil Montserrat Inter Lora Geist Cousine 'Fira Code'; do
   fi
 done
 
-# Each name of ChassisAssets.swift is in a catalog of the release
+# Each image of ChassisAssets.swift is in the catalog of the release
 if [ ! -d "$assets" ]; then
   report "Generated/ is missing: run scripts/sync-brand.sh first"
 else
   names="$(sed -n 's/^[[:space:]]*case [A-Za-z]* = "\(.*\)"$/\1/p' "$source_dir/Chassis/ChassisAssets.swift")"
   for name in $names; do
-    if [ ! -d "$assets/Icons.xcassets/$name.imageset" ] && [ ! -d "$assets/Assets.xcassets/$name.imageset" ]; then
-      report "\"$name\" is in no catalog of the release"
+    if [ ! -d "$assets/Assets.xcassets/$name.imageset" ]; then
+      report "\"$name\" is not in Assets.xcassets of the release"
     fi
   done
 fi

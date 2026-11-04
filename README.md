@@ -2,12 +2,14 @@
 
 A SwiftUI app that shows how to use Chassis UI in an iOS project. It is an example to read and
 copy from, and it is not published. Its colors, type, spacing, motion, fonts, icons and images
-all come from two versioned releases, and one build setting chooses the brand:
+all come from three versioned releases, and one build setting chooses the brand:
 
 - [`chassis-ui/website-tokens`](https://github.com/chassis-ui/website-tokens/releases): the iOS
   archive of the `demo` app, with its Swift constants.
 - [`chassis-ui/website-assets`](https://github.com/chassis-ui/website-assets/releases): the iOS
-  archive of the `demo` app, with its asset catalogs, fonts and app icon.
+  archive of the `demo` app, with its images, fonts and app icon.
+- [`chassis-ui/website-icons`](https://github.com/chassis-ui/website-icons/releases): the iOS
+  archive of the icon set, the same for every brand, with its asset catalog and the enum `CxIcon`.
 
 ## Run it
 
@@ -19,8 +21,8 @@ GitHub's rate limit, set `GH_TOKEN` to a token for the script to send.
 open ChassisExample.xcodeproj
 ```
 
-The first build downloads the tokens and the assets of the brand into `Generated/`. Neither that
-folder nor the downloads in `.cache/` are committed.
+The first build downloads the tokens and the assets of the brand, and the icons, into
+`Generated/`. Neither that folder nor the downloads in `.cache/` are committed.
 
 ## Switch the brand
 
@@ -46,18 +48,20 @@ Change the version in `Chassis.xcconfig` and build. That line is the whole chang
 ```
 CHASSIS_TOKENS_VERSION = 0.3.0
 CHASSIS_ASSETS_VERSION = 0.5.0
+CHASSIS_ICONS_VERSION = 0.1.0
 ```
 
 A token that was renamed or removed then fails to compile, and shows you what to update. A font
-role that no longer resolves stops the app at launch. `scripts/lint-tokens.sh` reports an icon or
-an image that left the catalogs. The `Update versions` workflow checks for new releases each
-week and opens a pull request. The repository has to allow Actions to create pull requests, and
-CI starts on such a pull request when someone closes and reopens it.
+role that no longer resolves stops the app at launch, an icon that was renamed or removed fails to
+compile, and `scripts/lint-tokens.sh` reports an image that left the catalog. The
+`Update versions` workflow checks for new releases each week and opens a pull request. The
+repository has to allow Actions to create pull requests, and CI starts on such a pull request when
+someone closes and reopens it.
 
 ## Use your own tokens and assets
 
-Where the tokens and the assets come from is set in `Chassis.xcconfig` too, and a change to any of
-these settings replaces `Generated/` on the next build:
+Where the tokens, the assets and the icons come from is set in `Chassis.xcconfig` too, and a
+change to any of these settings replaces `Generated/` on the next build:
 
 | Setting                     | What it names                                                    |
 | --------------------------- | ---------------------------------------------------------------- |
@@ -66,11 +70,14 @@ these settings replaces `Generated/` on the next build:
 | `CHASSIS_TOKENS_ARCHIVE`    | The name of the tokens archive of a brand on that release        |
 | `CHASSIS_ASSETS_REPOSITORY` | The GitHub `team/repo` of the assets, with a release `v<version>` |
 | `CHASSIS_ASSETS_ARCHIVE`    | The name of the assets archive of a brand on that release        |
+| `CHASSIS_ICONS_REPOSITORY`  | The GitHub `team/repo` of the icons, with a release `v<version>`  |
+| `CHASSIS_ICONS_ARCHIVE`     | The name of the icons archive on that release, for every brand   |
 
-The archive names are built from the app, the brand and the version. The archive of the tokens
-holds the Swift files and `Icons.xcassets` at its top level. The Swift constants have to keep the
-names this app reads, such as `ChassisTokensColor`, and the catalogs and the fonts have to keep
-their names too.
+The names of the archives of the tokens and the assets are built from the app, the brand and the
+version, and that of the icons from the version. The archive of the tokens holds the Swift files
+and `Icons.xcassets` at its top level, and that of the icons `ChassisIcons.xcassets` and
+`ChassisIcons.swift`. The Swift constants have to keep the names this app reads, such as
+`ChassisTokensColor` and `CxIcon`, and the catalogs and the fonts have to keep their names too.
 
 ## How it fits together
 
@@ -121,10 +128,15 @@ a file stops the app at once.
 
 ### Assets
 
-`Assets.xcassets` and `Icons.xcassets` come from the archive. `Image("logo/logo")` follows light
-and dark, as the archive joins `logo_light` and `logo_dark` into one image set. An icon that paints
-in `currentcolor` is a template, and takes the color of its view. The tokens have an
-`Icons.xcassets` of their own for the icons of their components, which builds beside the other.
+`Assets.xcassets` comes from the archive of the assets. `Image("logo/logo")` follows light and
+dark, as the archive joins `logo_light` and `logo_dark` into one image set.
+
+The icons come from the archive of `website-icons`: `ChassisIcons.xcassets`, with a template image
+per icon, which takes the color of its view, and `ChassisIcons.swift`, the enum `CxIcon` with
+`Image(CxIcon.homeSolid)`. `ChassisIcon` names the icons this app uses by what they stand for, and
+draws each with a case of `CxIcon`. The archive of the assets still holds an `Icons.xcassets`, which
+is deprecated, and the project does not build it. The tokens have an `Icons.xcassets` of their own
+for the icons of their components, which builds beside the other.
 
 The app icon is the `.icon` bundle of the archive, `app-icon/app_icon.icon`. Xcode writes the older
 icon images from it for earlier versions of iOS.

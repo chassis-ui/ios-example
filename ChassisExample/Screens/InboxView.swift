@@ -35,7 +35,7 @@ struct InboxView: View {
                                 Label {
                                     Text("Delete")
                                 } icon: {
-                                    Image(ChassisIcon.trash.rawValue)
+                                    ChassisIcon.trash.image
                                 }
                             }
                             .tint(.token(ChassisTokensColor.ColorContextDangerBaseColor))
@@ -47,7 +47,7 @@ struct InboxView: View {
                                 Label {
                                     Text("Read")
                                 } icon: {
-                                    Image(ChassisIcon.check.rawValue)
+                                    ChassisIcon.check.image
                                 }
                             }
                             .tint(.token(ChassisTokensColor.ColorContextPrimaryBaseColor))

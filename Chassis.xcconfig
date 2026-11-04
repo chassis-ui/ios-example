@@ -19,6 +19,11 @@ CHASSIS_ASSETS_REPOSITORY = chassis-ui/website-assets
 CHASSIS_ASSETS_VERSION = 0.5.0
 CHASSIS_ASSETS_ARCHIVE = website-assets-ios-$(CHASSIS_APP)-$(CHASSIS_BRAND)-$(CHASSIS_ASSETS_VERSION).zip
 
+// The icons: one archive for every brand, on a release v<version> of a GitHub repository
+CHASSIS_ICONS_REPOSITORY = chassis-ui/website-icons
+CHASSIS_ICONS_VERSION = 0.1.0
+CHASSIS_ICONS_ARCHIVE = chassis-icons-ios-$(CHASSIS_ICONS_VERSION).zip
+
 // One bundle identifier per brand, so that the brands install side by side
 PRODUCT_BUNDLE_IDENTIFIER = com.chassis-ui.example.$(CHASSIS_BRAND)
 INFOPLIST_KEY_CFBundleDisplayName = $(CHASSIS_BRAND)

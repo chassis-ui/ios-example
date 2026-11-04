@@ -1,13 +1,13 @@
 #!/bin/sh
 #
-# Fills Generated/ with the tokens and the assets of one brand, at the versions that
-# Chassis.xcconfig pins. Xcode runs it as the first build phase. It needs no Node.js.
+# Fills Generated/ with the tokens and the assets of one brand, and the icons, at the versions
+# that Chassis.xcconfig pins. Xcode runs it as the first build phase. It needs no Node.js.
 #
 #   scripts/sync-brand.sh            The brand of Chassis.xcconfig
 #   scripts/sync-brand.sh sinefil    Another brand
 #
 # Every download is checked against the digest GitHub records for it, and kept in .cache/.
-# Nothing is written to Generated/ until both downloads have passed and the brand is known.
+# Nothing is written to Generated/ until every download has passed and the brand is known.
 
 set -eu
 
@@ -47,10 +47,13 @@ tokens_archive="$(setting CHASSIS_TOKENS_ARCHIVE)"
 assets_repository="$(setting CHASSIS_ASSETS_REPOSITORY)"
 assets_version="$(setting CHASSIS_ASSETS_VERSION)"
 assets_archive="$(setting CHASSIS_ASSETS_ARCHIVE)"
+icons_repository="$(setting CHASSIS_ICONS_REPOSITORY)"
+icons_version="$(setting CHASSIS_ICONS_VERSION)"
+icons_archive="$(setting CHASSIS_ICONS_ARCHIVE)"
 
 generated="$root/Generated"
 cache="$root/.cache"
-stamp="$brand $tokens_repository@$tokens_version/$tokens_archive $assets_repository@$assets_version/$assets_archive"
+stamp="$brand $tokens_repository@$tokens_version/$tokens_archive $assets_repository@$assets_version/$assets_archive $icons_repository@$icons_version/$icons_archive"
 
 # Nothing changed: leave the files alone, so that Xcode has nothing to compile again
 if [ "$(cat "$generated/.stamp" 2>/dev/null)" = "$stamp" ]; then
@@ -106,20 +109,23 @@ fetch() {
   echo "$cached"
 }
 
-mkdir "$work/tokens" "$work/assets"
+mkdir "$work/tokens" "$work/assets" "$work/icons"
 # Each on its own line: a failed download stops the script only as an assignment
 tokens_zip="$(fetch "$tokens_repository" "$tokens_version" "$tokens_archive")"
 assets_zip="$(fetch "$assets_repository" "$assets_version" "$assets_archive")"
+icons_zip="$(fetch "$icons_repository" "$icons_version" "$icons_archive")"
 unzip -q "$tokens_zip" -d "$work/tokens"
 unzip -q "$assets_zip" -d "$work/assets"
+unzip -q "$icons_zip" -d "$work/icons"
 
 # --- Replace Generated/. The whole archive is kept, as a brand may hold more than this app reads.
 
 # The files of two brands can have one modification time, which would hide a change from Xcode
-find "$work/tokens" "$work/assets" -type f -exec touch {} +
+find "$work/tokens" "$work/assets" "$work/icons" -type f -exec touch {} +
 mkdir "$work/next"
 mv "$work/tokens" "$work/next/tokens"
 mv "$work/assets" "$work/next/assets"
+mv "$work/icons" "$work/next/icons"
 echo "$stamp" >"$work/next/.stamp"
 if [ -e "$generated" ]; then
   mv "$generated" "$work/previous"
